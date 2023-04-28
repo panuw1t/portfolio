@@ -1,0 +1,15 @@
+version: '3'
+services:
+  server:
+    build: ./demo
+    ports:
+      - "8080:8080"
+
+  nextjs:
+    build: ./web
+    ports:
+      - "3000:3000"
+    environment:
+      SERVER_URL: "http://server:8080"
+    depends_on:
+      - server
