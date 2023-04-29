@@ -10,13 +10,17 @@ interface data{
 
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const id : any = params?.id || "";
-    console.log(id);
+    const id : any = params?.id || "";    
 
     try {
-      const res = await fetch(`${process.env.SERVER_URL}/${id}`);
+      const res = await fetch(`${process.env.SERVER_URL || 'http://localhost:8080'}/${id}`);
+      if( res.status == 404){
+        return {
+          notFound: true,
+        }
+      }
       const json = await res.text();
-      const data: data = {title:id, info:json}
+      const data: data = {title:id, info:json}      
 
       return {
         props: {

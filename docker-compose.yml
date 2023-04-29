@@ -1,9 +1,25 @@
 version: '3'
 services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+
   server:
     build: ./demo
     ports:
       - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/numerical
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - db
 
   nextjs:
     build: ./web
