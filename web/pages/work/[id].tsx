@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const id : any = params?.id || "";    
 
     try {
-      const res = await fetch(`${process.env.SERVER_URL || 'http://localhost:8080'}/${id}`);
+      const res = await fetch(`${process.env.SERVER_URL || 'http://localhost:8080'}/query?id=${id}`);
       if( res.status == 404){
         return {
           notFound: true,
@@ -41,7 +41,6 @@ export default function Project({ data }: PostData) {
             <Head>
                 <title>{data.title}</title>
             </Head>
-            <h1>{data.title}</h1>
             <p>{data.info}</p>
         </Layout>
     )

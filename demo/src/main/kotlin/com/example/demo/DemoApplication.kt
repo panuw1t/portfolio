@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringApplication
+import org.springframework.web.bind.annotation.RequestParam
+
 
 
 @SpringBootApplication
@@ -29,12 +31,10 @@ class BootController {
 	fun pals() = "hello pals"
 
 	@GetMapping("/query")
-	fun query(): List<Sample> {
-		val sql = "SELECT *  FROM sample"
-		return jdbcTemplate!!.query(sql) { rs, rowNum ->
-			Sample(rs.getInt("id"), rs.getInt("sample"), rs.getString("method"), rs.getString("info"))
-		}
+	fun query(@RequestParam id: Int): String? {
+		val sql = "SELECT info  FROM sample WHERE id = $id"
+		return jdbcTemplate?.queryForObject(sql, String::class.java)
 	}
 }
 
-data class Sample(val id: Int, val sample: Int, val method: String, val info: String)
+data class Sample(val info: String)

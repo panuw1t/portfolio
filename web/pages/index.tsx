@@ -28,24 +28,26 @@ export default function Home({ allPostsData }: PostData) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
+        <p>Hello, I&apos;m panuvit. I&apos;m student comsci. You can check my
+          <a href="https://github.com/panuw1t"> GitHub</a>.
+        </p>
         <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          (This is a sample website - I can build website like this from
+          <a href="https://nextjs.org/learn"> Next.js tutorial</a>.)
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>About</h2>
         <ul className={utilStyles.list}>
             <li className={utilStyles.listItem}>
-              <Link href={`/work/hello`}>When to Use Static Generation v.s. Server-side Rendering</Link>
+              <Link href={`/work/1`}>Experience and project</Link>
               <br />
               200 cell brain
             </li>
             <li className={utilStyles.listItem}>
-              <Link href={`/work/notreal`}>Two Forms of Pre-rendering</Link>
+              <Link href={`/work/2`}>Skill that I learn from myself</Link>
               <br />
-              time = illusion
+              mostly youtube
             </li>
         </ul>
       </section>
